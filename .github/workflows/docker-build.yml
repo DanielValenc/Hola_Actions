@@ -1,0 +1,20 @@
+name: Construir Imagen Docker
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Paso 1: Descargar tu código en el servidor de GitHub
+    - name: Checkout del código
+      uses: actions/checkout@v4
+
+    # Paso 2: Intentar construir la imagen usando tu Dockerfile
+    - name: Construir la imagen Docker
+      run: docker build . --file Dockerfile --tag mi-hola-mundo:$(date +%s)
